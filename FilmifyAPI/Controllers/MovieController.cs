@@ -36,7 +36,7 @@ namespace FilmifyAPI.Controllers
         }
 
         /// <summary> 
-        /// Kullanýcý kimlik doðrulama iþlemini gerçekleþtirmek için kullanýlýr. testa
+        /// Kullanýcý kimlik doðrulama iþlemini gerçekleþtirmek için kullanýlýr.
         /// </summary>
         [AllowAnonymous]
         [HttpPost("Authenticate")]
