@@ -35,8 +35,8 @@ namespace FilmifyAPI.Controllers
             _userService = userService;
         }
 
-        /// <summary>
-        /// Kullanýcý kimlik doðrulama iþlemini gerçekleþtirmek için kullanýlýr.
+        /// <summary> 
+        /// Kullanýcý kimlik doðrulama iþlemini gerçekleþtirmek için kullanýlýr. test
         /// </summary>
         [AllowAnonymous]
         [HttpPost("Authenticate")]
