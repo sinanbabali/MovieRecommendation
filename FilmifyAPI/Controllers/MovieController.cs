@@ -59,7 +59,7 @@ namespace FilmifyAPI.Controllers
         public ActionResult StartFetchingMovies()
         {
             _unitOfWork.Films.ClearExistingMovies();
-            timer = new Timer(_unitOfWork.Films.FetchMoviesAndSave, null, TimeSpan.Zero, TimeSpan.FromSeconds(30));
+            timer = new Timer(_unitOfWork.Films.FetchMoviesAndSave, null, TimeSpan.Zero, TimeSpan.FromMinutes(15));
             return Ok("Movie fetching started.");
         }
 
@@ -189,7 +189,7 @@ namespace FilmifyAPI.Controllers
             _unitOfWork.Films.Add(Film);
             _unitOfWork.SaveChanges();
 
-            var Films = _unitOfWork.Films.GetFilms().OrderByDescending(x => x.Id).ToList();
+            var Films = _unitOfWork.Films.GetFilms().OrderByDescending(x => x.Id).Take(10).ToList();
 
             object ResultData = new { Count = Films.Count, Films = Films };
 
