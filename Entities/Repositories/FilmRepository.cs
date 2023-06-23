@@ -66,7 +66,6 @@ namespace Core.Repositories
                 Movies.AddRange(TheMovie.Movies);
             }
 
-
             return Movies;
         }
 
@@ -76,24 +75,36 @@ namespace Core.Repositories
 
             List<Film> AddMovies = new List<Film>();
 
-            foreach (var item in Movies)
+
+            try
             {
-                Film Film = new Film
+                foreach (var item in Movies)
                 {
-                    Name = item.Title,
-                    OriginalLanguage = item.OriginalLanguage,
-                    Overview = item.Overview,
-                    ReleaseDate = item.ReleaseDate
+                    Film Film = new Film
+                    {
+                        Name = item.Title,
+                        OriginalLanguage = item.OriginalLanguage,
+                        Overview = item.Overview,
+                        ReleaseDate = item.ReleaseDate ?? DateTimeOffset.MinValue
                 };
 
-                AddMovies.Add(Film);
+                    AddMovies.Add(Film);
+                }
+
+                using (var context = new MovieContext())
+                {
+                    context.Films.AddRange(AddMovies);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
 
-            using (var context = new MovieContext())
-            {
-                context.Films.AddRange(AddMovies);
-                context.SaveChanges();
-            }
+
+            
         }
 
         public async Task SendFilmRecommendationEmail(string senderEmail, string senderName, string recipientEmail, string subject, string content)

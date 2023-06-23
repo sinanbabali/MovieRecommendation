@@ -58,7 +58,7 @@ namespace Core.Dto
         public double Popularity { get; set; }
 
         [JsonProperty("release_date")]
-        public DateTimeOffset ReleaseDate { get; set; }
+        public DateTimeOffset? ReleaseDate { get; set; }
 
         [JsonProperty("video")]
         public bool Video { get; set; }
