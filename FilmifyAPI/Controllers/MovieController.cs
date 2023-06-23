@@ -189,11 +189,11 @@ namespace FilmifyAPI.Controllers
             _unitOfWork.Films.Add(Film);
             _unitOfWork.SaveChanges();
 
-            var Films = _unitOfWork.Films.GetFilms().OrderByDescending(x => x.Id).Take(10).ToList();
+            var Films = _unitOfWork.Films.GetFilms();
 
-            object ResultData = new { Count = Films.Count, Films = Films };
+            object ResultData = new { TotalCount = Films.Count, LatestMovies = Films.OrderByDescending(x => x.Id).Take(10).ToList()};
 
             return ServiceResponse.Success($"Film Baþarýyla Eklendi - {DateTime.Now}", ResultData);
         }
-    }
+}
 }
