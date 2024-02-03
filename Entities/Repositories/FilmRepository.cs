@@ -120,7 +120,6 @@ namespace Core.Repositories
                 { "api-key", apiKey }
             };
 
-
             var data = new EmailData
             {
                 Sender = new SenderInfo
